@@ -23,4 +23,19 @@ export class ProductService {
     console.log('se cargo el producto');
     return this.clientHttp.post(url, product);
   }
+
+  getProducById(idProduct: number) {
+    let url: string = this.urlBase.concat(`/product/${idProduct}`);
+    return this.clientHttp.get<Product>(url);
+  }
+
+  editProduct(idProduct: number, product: Product) {
+    let url: string = this.urlBase.concat(`/edit-product/${idProduct}`);
+    return this.clientHttp.put<Product>(url, product);
+  }
+
+  deleteProduct(idProduct: number): Observable<Object> {
+    let url: string = this.urlBase.concat(`/deleteProduct/${idProduct}`);
+    return this.clientHttp.delete(url);
+  }
 }
